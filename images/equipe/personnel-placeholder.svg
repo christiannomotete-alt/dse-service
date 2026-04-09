@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 1000" role="img" aria-labelledby="title desc">
+  <title id="title">Photo de personnel</title>
+  <desc id="desc">Image de remplacement pour photo de personnel DSE-SERVICE</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#dce7f3"/>
+      <stop offset="100%" stop-color="#c5d8ed"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="1000" fill="url(#bg)"/>
+  <circle cx="400" cy="330" r="140" fill="#2c6eb5" opacity="0.2"/>
+  <path d="M400 505c-114 0-206 92-206 206v79h412v-79c0-114-92-206-206-206z" fill="#2c6eb5" opacity="0.23"/>
+  <circle cx="400" cy="318" r="112" fill="#2c6eb5" opacity="0.7"/>
+  <rect x="170" y="840" width="460" height="84" rx="14" fill="#0d1117" opacity="0.9"/>
+  <text x="400" y="893" text-anchor="middle" fill="#ffffff" font-family="Arial, sans-serif" font-size="34" font-weight="700">
+    PHOTO EQUIPE
+  </text>
+</svg>

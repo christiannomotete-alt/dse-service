@@ -1,0 +1,21 @@
+/*
+  X-Frame-Options: SAMEORIGIN
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: geolocation=(), camera=(), microphone=()
+  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://formspree.io https://www.google-analytics.com; frame-src https://www.google.com; form-action https://formspree.io; base-uri 'self'; frame-ancestors 'self'; object-src 'none'; upgrade-insecure-requests
+
+/*.html
+  Cache-Control: public, max-age=0, must-revalidate
+
+/style.css
+  Cache-Control: public, max-age=604800, stale-while-revalidate=86400
+
+/script.js
+  Cache-Control: public, max-age=604800, stale-while-revalidate=86400
+
+/analytics-config.js
+  Cache-Control: public, max-age=300, must-revalidate
+
+/images/*
+  Cache-Control: public, max-age=31536000, immutable
