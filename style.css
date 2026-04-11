@@ -1152,3 +1152,44 @@ textarea:focus:not(:focus-visible) {
     }
 
 }
+
+/* SAFETY OVERRIDES FOR HEADER DROPDOWN (DESKTOP) */
+@media (min-width: 769px) {
+    #masthead .nav-dropdown {
+        position: relative !important;
+        display: inline-flex !important;
+        align-items: center !important;
+    }
+
+    #masthead .nav-dropdown .nav-dropdown-menu {
+        position: absolute !important;
+        top: 100% !important;
+        left: 0 !important;
+        min-width: 260px !important;
+        opacity: 0 !important;
+        visibility: hidden !important;
+        pointer-events: none !important;
+        transform: translateY(8px) !important;
+        display: block !important;
+        z-index: 1200 !important;
+    }
+
+    #masthead .nav-dropdown:hover .nav-dropdown-menu,
+    #masthead .nav-dropdown:focus-within .nav-dropdown-menu,
+    #masthead .nav-dropdown.is-open .nav-dropdown-menu {
+        opacity: 1 !important;
+        visibility: visible !important;
+        pointer-events: auto !important;
+        transform: translateY(0) !important;
+    }
+
+    #masthead .nav-dropdown .nav-dropdown-menu a {
+        display: flex !important;
+        width: 100% !important;
+        margin: 0 !important;
+    }
+
+    #masthead .nav-dropdown .nav-dropdown-menu a::after {
+        display: none !important;
+    }
+}
