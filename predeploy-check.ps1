@@ -46,7 +46,9 @@ function Resolve-LocalPath {
     return Join-Path -Path $baseDir -ChildPath $clean
 }
 
-$htmlFiles = Get-ChildItem -Path $root -Filter *.html -File
+$htmlFiles = Get-ChildItem -Path $root -Filter *.html -File | Where-Object {
+    $_.Name -notmatch '^google[a-z0-9]+\.html$'
+}
 
 foreach ($file in $htmlFiles) {
     $content = Get-Content -Path $file.FullName -Raw -Encoding UTF8

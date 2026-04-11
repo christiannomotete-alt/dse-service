@@ -1,6 +1,7 @@
 const menuToggle = document.querySelector('.menu-toggle');
 const menu = document.getElementById('main-navigation');
 const navLinks = document.querySelectorAll('#main-navigation a');
+const navDropdowns = document.querySelectorAll('.nav-dropdown');
 const sections = document.querySelectorAll('main section[id]');
 const backToTopLink = document.querySelector('.back-to-top');
 const form = document.getElementById('contact-form');
@@ -135,6 +136,54 @@ if (menuToggle && menu) {
     });
 }
 
+const closeDropdowns = () => {
+    navDropdowns.forEach((dropdown) => dropdown.classList.remove('is-open'));
+};
+
+if (navDropdowns.length > 0) {
+    navDropdowns.forEach((dropdown) => {
+        const toggleLink = dropdown.querySelector('.nav-dropdown-toggle');
+
+        if (!toggleLink) {
+            return;
+        }
+
+        toggleLink.addEventListener('click', (event) => {
+            if (window.innerWidth <= 768) {
+                return;
+            }
+
+            const isOpen = dropdown.classList.contains('is-open');
+
+            if (!isOpen) {
+                event.preventDefault();
+                closeDropdowns();
+                dropdown.classList.add('is-open');
+            }
+        });
+    });
+
+    document.addEventListener('click', (event) => {
+        const clickedInsideDropdown = Array.from(navDropdowns).some((dropdown) => dropdown.contains(event.target));
+
+        if (!clickedInsideDropdown) {
+            closeDropdowns();
+        }
+    });
+
+    document.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape') {
+            closeDropdowns();
+        }
+    });
+
+    window.addEventListener('resize', () => {
+        if (window.innerWidth <= 768) {
+            closeDropdowns();
+        }
+    });
+}
+
 const faders = document.querySelectorAll('.fade-in');
 
 if (faders.length > 0) {
@@ -151,33 +200,75 @@ if (faders.length > 0) {
     faders.forEach((element) => fadeObserver.observe(element));
 }
 
-const setActiveLink = (id) => {
+const normalizePath = (pathValue) => {
+    const value = String(pathValue || '').trim().toLowerCase();
+
+    if (value === '' || value === '/' || value.endsWith('/index.html')) {
+        return '/index.html';
+    }
+
+    return value.startsWith('/') ? value : `/${value}`;
+};
+
+const currentPath = normalizePath(window.location.pathname);
+const hasHashNavigation = Array.from(navLinks).some((link) => String(link.getAttribute('href') || '').startsWith('#'));
+
+if (hasHashNavigation) {
+    const setActiveLinkBySection = (id) => {
+        navLinks.forEach((link) => {
+            if (link.getAttribute('href') === `#${id}`) {
+                link.setAttribute('aria-current', 'page');
+                return;
+            }
+
+            link.removeAttribute('aria-current');
+        });
+    };
+
+    if (sections.length > 0) {
+        const sectionObserver = new IntersectionObserver((entries) => {
+            const visibleEntries = entries
+                .filter((entry) => entry.isIntersecting)
+                .sort((entryA, entryB) => entryB.intersectionRatio - entryA.intersectionRatio);
+
+            if (visibleEntries.length > 0) {
+                setActiveLinkBySection(visibleEntries[0].target.id);
+            }
+        }, {
+            threshold: [0.25, 0.5, 0.75],
+            rootMargin: '-35% 0px -45% 0px'
+        });
+
+        sections.forEach((section) => sectionObserver.observe(section));
+        setActiveLinkBySection(sections[0].id);
+    }
+} else {
     navLinks.forEach((link) => {
-        if (link.getAttribute('href') === `#${id}`) {
+        const href = String(link.getAttribute('href') || '').trim();
+
+        if (href === '' || href.startsWith('#')) {
+            link.removeAttribute('aria-current');
+            return;
+        }
+
+        let linkPath = href;
+
+        if (/^https?:\/\//i.test(href)) {
+            try {
+                linkPath = new URL(href).pathname;
+            } catch (error) {
+                link.removeAttribute('aria-current');
+                return;
+            }
+        }
+
+        if (normalizePath(linkPath) === currentPath) {
             link.setAttribute('aria-current', 'page');
             return;
         }
 
         link.removeAttribute('aria-current');
     });
-};
-
-if (sections.length > 0) {
-    const sectionObserver = new IntersectionObserver((entries) => {
-        const visibleEntries = entries
-            .filter((entry) => entry.isIntersecting)
-            .sort((entryA, entryB) => entryB.intersectionRatio - entryA.intersectionRatio);
-
-        if (visibleEntries.length > 0) {
-            setActiveLink(visibleEntries[0].target.id);
-        }
-    }, {
-        threshold: [0.25, 0.5, 0.75],
-        rootMargin: '-35% 0px -45% 0px'
-    });
-
-    sections.forEach((section) => sectionObserver.observe(section));
-    setActiveLink(sections[0].id);
 }
 
 const updateBackToTopVisibility = () => {
@@ -235,6 +326,8 @@ if (form) {
         const message = form.elements.message.value.trim();
         const serviceField = form.elements.service;
         const service = serviceField ? String(serviceField.value || '').trim() : '';
+        const consentField = form.elements.consent;
+        const consentAccepted = consentField ? Boolean(consentField.checked) : true;
         const honeypot = form.elements.website.value.trim();
         const action = form.getAttribute('action') || '';
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -273,6 +366,18 @@ if (form) {
             trackEvent('lead_form_error', {
                 event_category: 'form',
                 event_label: 'missing_service'
+            });
+            return;
+        }
+
+        if (consentField && !consentAccepted) {
+            event.preventDefault();
+            formError.textContent = 'Veuillez accepter la politique de confidentialite avant l\'envoi.';
+            formError.hidden = false;
+
+            trackEvent('lead_form_error', {
+                event_category: 'form',
+                event_label: 'missing_consent'
             });
             return;
         }

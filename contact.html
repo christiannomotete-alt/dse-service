@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="fr-FR">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Contact DSE-SERVICE : formulaire, telephone, email et localisation." />
+    <meta name="robots" content="index, follow" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Contact | DSE-SERVICE" />
+    <meta property="og:description" content="Contactez DSE-SERVICE pour vos projets etudes, construction et maintenance." />
+    <meta property="og:image" content="https://www.dse-service.com/images/dse-service-og-image.jpg" />
+    <meta property="og:url" content="https://www.dse-service.com/contact.html" />
+    <link rel="canonical" href="https://www.dse-service.com/contact.html" />
+    <title>Contact | DSE-SERVICE</title>
+    <link rel="icon" type="image/png" href="logo.png" />
+    <link rel="apple-touch-icon" href="logo.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;800&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+<a class="skip-link" href="#contenu-principal">Aller au contenu principal</a>
+<div id="page">
+    <header id="masthead">
+        <div class="logo-container">
+            <a href="index.html" class="logo-link" aria-label="Retour a l'accueil DSE-SERVICE">
+                <img src="logo.png" alt="Logo DSE-SERVICE" width="295" height="295" decoding="async" />
+            </a>
+        </div>
+        <div class="header-right">
+            <button class="menu-toggle" aria-label="Ouvrir le menu" aria-haspopup="true" aria-expanded="false" aria-controls="main-navigation">&#9776;</button>
+            <nav id="main-navigation" class="main-navigation" aria-label="Navigation principale">
+                <a href="index.html">Accueil</a>
+                <a href="apropos.html">&Agrave; propos</a>
+                <a href="expertises.html">Expertises</a>
+                <div class="nav-dropdown">
+                    <a href="nos-services.html" class="nav-dropdown-toggle">Nos services</a>
+                    <div class="nav-dropdown-menu" role="menu" aria-label="Sous-menu nos services">
+                        <a href="service-construction.html">Construction</a>
+                        <a href="service-maintenance.html">Maintenance</a>
+                        <a href="service-etudes-conseil.html">Etudes &amp; Conseil</a>
+                        <a href="service-travaux-publics.html">Travaux Publics</a>
+                    </div>
+                </div>
+                <a href="projets.html">Projets</a>
+                <a href="etudes-de-cas.html">&Eacute;tudes de cas</a>
+                <a href="faq.html">FAQ</a>
+                <a href="contact.html" aria-current="page">Contact</a>
+            </nav>
+        </div>
+    </header>
+
+    <main id="contenu-principal">
+        <section class="section-padding fade-in" id="contact">
+            <div class="section-title">
+                <h1>Contactez-nous</h1>
+            </div>
+
+            <div class="contact-wrapper">
+                <form class="contact-form" action="https://formspree.io/f/mqegovqg" method="POST" id="contact-form">
+                    <label for="name" class="sr-only">Nom complet</label>
+                    <input id="name" name="name" type="text" placeholder="Nom complet" autocomplete="name" aria-describedby="form-error form-status" required />
+
+                    <label for="email" class="sr-only">Adresse email</label>
+                    <input id="email" name="email" type="email" placeholder="Adresse email" autocomplete="email" aria-describedby="form-error form-status" required />
+
+                    <label for="message" class="sr-only">Decrivez votre projet</label>
+                    <textarea id="message" name="message" rows="6" placeholder="Decrivez votre projet ou votre demande..." aria-describedby="form-error form-status" required></textarea>
+
+                    <label for="service" class="sr-only">Service concerne</label>
+                    <select id="service" name="service" aria-describedby="form-error form-status" required>
+                        <option value="" selected disabled>Service concerne</option>
+                        <option value="construction">Construction</option>
+                        <option value="maintenance">Maintenance</option>
+                        <option value="etudes-conseil">Etudes & Conseil</option>
+                        <option value="travaux-publics">Travaux Publics</option>
+                        <option value="autre">Autre</option>
+                    </select>
+
+                    <input type="hidden" name="_subject" value="Nouvelle demande depuis DSE-SERVICE" />
+                    <input type="hidden" name="_next" value="https://www.dse-service.com/merci.html" />
+                    <input type="hidden" name="lead_source" value="website-dse-service" />
+                    <input id="website" name="website" type="text" placeholder="Votre site web" class="hidden" autocomplete="off" />
+
+                    <p id="form-error" class="contact-feedback is-error" role="alert" hidden>
+                        Veuillez remplir correctement tous les champs.
+                    </p>
+                    <p id="form-status" class="contact-feedback is-success" role="status" aria-live="polite" hidden></p>
+
+                    <div class="consent-group">
+                        <input id="consent" name="consent" type="checkbox" value="accepted" required />
+                        <label for="consent" class="consent-label">
+                            En soumettant ce formulaire, j'accepte que les informations saisies soient traitees par
+                            <strong>DSE-SERVICE</strong> dans le cadre de ma demande de contact et de la relation
+                            commerciale qui peut en decouler.
+                            <a href="politique-confidentialite.html">En savoir plus en consultant notre politique de confidentialite.</a>
+                        </label>
+                    </div>
+
+                    <button type="submit" id="contact-submit">Envoyer la demande</button>
+                </form>
+
+                <div class="contact-info-box">
+                    <h3>Informations de contact</h3>
+                    <p>Lome, Togo</p>
+                    <p><a href="tel:+22896951073">+228 96 95 10 73</a></p>
+                    <p><a href="mailto:dse.service@yahoo.com">dse.service@yahoo.com</a></p>
+                    <p>Lun - Sam : 08h00 a 18h00</p>
+
+                    <div class="map-box">
+                        <iframe
+                            id="contact-map"
+                            src="https://www.google.com/maps?q=Lome&output=embed"
+                            width="100%"
+                            height="300"
+                            title="Carte de localisation de DSE-SERVICE a Lome"
+                            style="border:0;"
+                            loading="lazy"
+                            allowfullscreen=""
+                            referrerpolicy="no-referrer-when-downgrade">
+                        </iframe>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <a href="#contact" class="back-to-top" aria-label="Retour en haut" aria-hidden="true">&#8593;</a>
+        <a href="https://wa.me/22896951073?text=Bonjour%20DSE-SERVICE%2C%20je%20souhaite%20demander%20un%20devis%20pour%20mon%20projet." class="whatsapp" target="_blank" rel="noopener noreferrer" aria-label="Contact WhatsApp">
+            <img src="images/whatsapp-icon.svg" alt="WhatsApp" width="35" height="35" loading="lazy" decoding="async" />
+        </a>
+    </main>
+
+    <footer id="colophon">
+        <div class="footer-content">
+            <div class="footer-logo">
+                <img src="logo-black-original.png" alt="Logo DSE-SERVICE" width="295" height="295" loading="lazy" decoding="async" />
+                <p>DSE-SERVICE : l'excellence technique au service du developpement durable de vos infrastructures.</p>
+            </div>
+            <div class="footer-nav">
+                <h4>Liens utiles</h4>
+                <a href="index.html">Accueil</a>
+                <a href="apropos.html">&Agrave; propos</a>
+                <a href="expertises.html">Expertises</a>
+                <a href="projets.html">Nos realisations</a>
+                <a href="etudes-de-cas.html">&Eacute;tudes de cas</a>
+                <a href="faq.html">FAQ</a>
+                <a href="contact.html">Contact</a>
+                <a href="mentions-legales.html">Mentions legales</a>
+                <a href="politique-confidentialite.html">Politique de confidentialite</a>
+            </div>
+            <div class="footer-contact">
+                <h4>Contact</h4>
+                <p>Lome, Togo</p>
+                <p>dse.service@yahoo.com</p>
+                <p>+228 96 95 10 73</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 DSE-SERVICE. Tous droits reserves.<br />Construire avec excellence.</p>
+            <p class="footer-regulatory">AVedji, Lome | Tel: 96951073 / 91977682 | dse.service@yahoo.com | RCCM: TG-LOM 2020 A 1253 | NIF: 1001668454 | Regime fiscal: Reel avec TVA | N&deg;CNSS: 112676</p>
+        </div>
+    </footer>
+</div>
+
+<script src="analytics-config.js"></script>
+<script src="script.js"></script>
+</body>
+</html>
