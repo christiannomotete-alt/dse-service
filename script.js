@@ -9,6 +9,7 @@ const formError = document.getElementById('form-error');
 const formStatus = document.getElementById('form-status');
 const submitButton = document.getElementById('contact-submit');
 const contactMap = document.getElementById('contact-map');
+const NAV_MOBILE_BREAKPOINT = 992;
 
 const analyticsConfig = window.DSE_ANALYTICS || {};
 const ga4MeasurementId = String(analyticsConfig.ga4MeasurementId || '').trim().toUpperCase();
@@ -118,7 +119,7 @@ if (menuToggle && menu) {
         const clickedInsideMenu = menu.contains(event.target);
         const clickedToggle = menuToggle.contains(event.target);
 
-        if (window.innerWidth <= 768 && menu.classList.contains('open') && !clickedInsideMenu && !clickedToggle) {
+        if (window.innerWidth <= NAV_MOBILE_BREAKPOINT && menu.classList.contains('open') && !clickedInsideMenu && !clickedToggle) {
             closeMenu();
         }
     });
@@ -130,7 +131,7 @@ if (menuToggle && menu) {
     });
 
     window.addEventListener('resize', () => {
-        if (window.innerWidth > 768) {
+        if (window.innerWidth > NAV_MOBILE_BREAKPOINT) {
             closeMenu();
         }
     });
@@ -149,7 +150,7 @@ if (navDropdowns.length > 0) {
         }
 
         toggleLink.addEventListener('click', (event) => {
-            if (window.innerWidth <= 768) {
+            if (window.innerWidth <= NAV_MOBILE_BREAKPOINT) {
                 return;
             }
 
@@ -178,7 +179,7 @@ if (navDropdowns.length > 0) {
     });
 
     window.addEventListener('resize', () => {
-        if (window.innerWidth <= 768) {
+        if (window.innerWidth <= NAV_MOBILE_BREAKPOINT) {
             closeDropdowns();
         }
     });
