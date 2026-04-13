@@ -74,10 +74,10 @@ a {
     flex-direction: column;
 }
 
-a:focus,
-button:focus,
-input:focus,
-textarea:focus {
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible {
     outline: 3px solid var(--primary-blue);
     outline-offset: 2px;
 }
@@ -123,6 +123,17 @@ textarea:focus:not(:focus-visible) {
 
 .logo-link {
     display: inline-block;
+    line-height: 0;
+}
+
+.logo-link:focus {
+    outline: none;
+}
+
+.logo-link:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(44, 110, 181, 0.35);
+    border-radius: 10px;
 }
 
 .header-right {
